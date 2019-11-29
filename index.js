@@ -1,21 +1,21 @@
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const api = require('./api');
 
 dotenv.config();
 
-const connection = mysql.createConnection({
-  host     : process.env.MYSQL_HOST,
-  user     : process.env.MYSQL_USER,
-  password : process.env.MYSQL_PWD
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/users', api.getUsers)
+app.get('/users/:id', api.getUserById)
+app.post('/users', api.createUser)
+app.put('/users/:id', api.updateUser)
+app.delete('/users/:id', api.deleteUser)
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
-});
-
-app.get('/users', function (req, res) {
   res.send('Hello World!')
 });
 
