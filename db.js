@@ -27,14 +27,14 @@ const query = (queryText, values,callback) => {
     if (error_master) {
       pool_slave.query(queryText, values, (error_slave, results_slave) => {
         if (error_slave) {
-          callback(true, null)
+          callback(error_slave, null)
           return
         }
-        callback(false, results_slave)
+        callback(null, results_slave)
       })
       return
     }
-    callback(false, results_master)
+    callback(null, results_master)
   })
 }
 
@@ -46,14 +46,14 @@ const queryNoValues = (queryText, callback) => {
     if (error_master) {
       pool_slave.query(queryText, (error_slave, results_slave) => {
         if (error_slave) {
-          callback(true, null)
+          callback(error_slave, null)
           return
         }
-        callback(false, results_slave)
+        callback(null, results_slave)
       })
       return
     }
-    callback(false, results_master)
+    callback(null, results_master)
   })
 }
 

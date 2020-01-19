@@ -14,10 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/users', api.getUsers)
-app.get('/users/:id', api.getUserById)
-app.post('/users', api.createUser)
-app.put('/users/:id', api.updateUser)
-app.delete('/users/:id', api.deleteUser)
+app.get('/user/:id', api.getUserById)
+app.post('/user', api.createUser)
+app.put('/user/:id', api.updateUser)
+app.delete('/user/:id', api.deleteUser)
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
