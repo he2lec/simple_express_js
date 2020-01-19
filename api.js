@@ -8,7 +8,8 @@ const getUsers = (request, response) => {
       response.status(501).json({"error": error.message})
       return
     }
-    response.status(200).json(results.rows)
+    var users = results.rows.map(u => ({"Id": u.id, "UserName" : u.username, "Age": u.age, "Gender": u.gender, "Job": u.job }))
+    response.status(200).json(users)
   })
 }
 
@@ -20,7 +21,12 @@ const getUserById = (request, response) => {
       response.status(501).json({"error": error.message})
       return
     }
-    response.status(200).json(results.rows)
+    var user = {}
+    var users = results.rows.map(u => ({"Id": u.id, "UserName" : u.username, "Age": u.age, "Gender": u.gender, "Job": u.job }))
+    if (users.length > 0) {
+      user = users[0]
+    }
+    response.status(200).json(user)
   })
 }
 
