@@ -9,7 +9,7 @@ const pool_master = new Pool({
   database: process.env.DB_MASTER_DATABASE,
   password: process.env.DB_MASTER_PASSWORD,
   port: process.env.DB_MASTER_PORT,
-  connectionTimeoutMillis: 2000
+  connectionTimeoutMillis: 500
 })
 
 const pool_slave = new Pool({
@@ -18,7 +18,7 @@ const pool_slave = new Pool({
   database: process.env.DB_SLAVE_DATABASE,
   password: process.env.DB_SLAVE_PASSWORD,
   port: process.env.DB_SLAVE_PORT,
-  connectionTimeoutMillis: 2000
+  connectionTimeoutMillis: 500
 })
 
 pool_master.on('error', (err, client) => {
