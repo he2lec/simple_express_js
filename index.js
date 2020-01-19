@@ -3,8 +3,12 @@ const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const api = require('./api');
+const cors = require('cors');
+
 
 dotenv.config();
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
