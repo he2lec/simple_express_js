@@ -4,8 +4,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool_master = new Pool({
-  user: process.env.DB__MASTER_USER,
-  host: process.env.DB__MASTER_HOST,
+  user: process.env.DB_MASTER_USER,
+  host: process.env.DB_MASTER_HOST,
   database: process.env.DB_MASTER_DATABASE,
   password: process.env.DB_MASTER_PASSWORD,
   port: process.env.DB_MASTER_PORT,
