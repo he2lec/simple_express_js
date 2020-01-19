@@ -21,6 +21,14 @@ const pool_slave = new Pool({
   connectionTimeoutMillis: 2000
 })
 
+pool_master.on('error', (err, client) => {
+  console.log('error pool_master ', err)
+})
+
+pool_slave.on('error', (err, client) => {
+  console.log('error pool_slave ', err)
+})
+
 const query = (queryText, values,callback) => {
   pool_master.query(queryText, values, (error_master, results_master) => {
     if (error_master) {
