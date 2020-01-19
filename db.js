@@ -22,9 +22,6 @@ const pool_slave = new Pool({
 })
 
 const query = (queryText, values,callback) => {
-  pool_master.connect().catch((err) => console.log("Failed to connect to master db : " + err.message));
-  pool_slave.connect().catch((err) => console.log("Failed to connect to slave db : " + err.message));
-
   pool_master.query(queryText, values, (error_master, results_master) => {
     if (error_master) {
       pool_slave.query(queryText, values, (error_slave, results_slave) => {
@@ -41,9 +38,6 @@ const query = (queryText, values,callback) => {
 }
 
 const queryNoValues = (queryText, callback) => {
-  pool_master.connect().catch((err) => console.log("Failed to connect to master db : " + err.message));
-  pool_slave.connect().catch((err) => console.log("Failed to connect to slave db : " + err.message));
-
   pool_master.query(queryText, (error_master, results_master) => {
     if (error_master) {
       pool_slave.query(queryText, (error_slave, results_slave) => {
